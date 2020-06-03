@@ -1,0 +1,49 @@
+<div class="text-center">
+    <form class="form-signin">
+      <h1 class="h4 mb-2 login">Login do Cliente</h1>
+      <label for="inputEmail" class="sr-only">E-mail</label>
+      <input [(ngModel)]="usuario.email"
+             [ngClass]="{
+              'is-invalid':email.invalid && (email.dirty || email.touched),
+              'is-valid':email.valid && (email.dirty || email.touched)
+             }" #email="ngModel" class="form-control mb-2" type="email" id="inputEmail" name="email" placeholder="Informe seu Email" required />
+  
+      <small class="invalid-feedback pb-2" *ngIf="email.invalid && (email.dirty || email.touched)">erro à â ã</small>
+             
+      <label for="inputNome" class="sr-only">Nome</label>
+      <input [(ngModel)]="usuario.Nome"
+             [ngClass]="{
+              'is-invalid':nome.invalid && (nome.dirty || nome.touched),
+              'is-valid':nome.valid && (nome.dirty || nome.touched)
+             }" #nome="ngModel" class="form-control mb-2" type="text" id="inputNome" name="nome" placeholder="Informe seu Nome" required />
+  
+      <small class="invalid-feedback pb-2" *ngIf="nome.invalid && (nome.dirty || nome.touched)">erro à â ã</small>
+
+      <label for="inputSobreNome" class="sr-only">Sobrenome</label>
+      <input [(ngModel)]="usuario.sobreNome"
+             [ngClass]="{
+              'is-invalid':sobreNome.invalid && (sobreNome.dirty || sobreNome.touched),
+              'is-valid':sobreNome.valid && (sobreNome.dirty || sobreNome.touched)
+             }" #sobreNome="ngModel" class="form-control mb-2" type="text" id="inputSobreNome" name="sobreNome" placeholder="Informe seu Sobrenome" required />
+  
+      <small class="invalid-feedback pb-2" *ngIf="sobreNome.invalid && (sobreNome.dirty || sobreNome.touched)">erro à â ã</small>
+
+      <label for="inputSenha" class="sr-only"></label>
+      <input required [(ngModel)]="usuario.senha" [ngClass]="{
+              'is-invalid':senha.invalid && (senha.dirty || senha.touched),
+              'is-valid':senha.valid && (senha.dirty || senha.touched)
+             }" #senha="ngModel" type="password" class="form-control mb-2" name="senha" placeholder="Senha" id="inputSenha" />
+      <small class="invalid-feedback pb-2" *ngIf="senha.invalid && (senha.dirty || senha.touched)">erro</small>
+      <button (click)="Cadastrar()" class="btn btn-primary btn-block" type="submit">Cadastrar</button>
+      <a [routerLink]='["/entrar"]'>Voltar</a>
+      <div class="alert alert-danger" *ngIf="mensagem">
+        {{mensagem}}
+      </div>
+    </form>
+    <div class="alert alert-primary" *ngIf="usuarioAtenticado">
+      usuario autenticado
+    </div>
+    <div class="alert alert-primary" *ngFor="let u of usuarios" role="alert">
+      {{ u }}
+    </div>
+  </div>

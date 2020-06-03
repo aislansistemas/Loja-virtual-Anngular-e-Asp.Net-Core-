@@ -1,0 +1,32 @@
+<div class="text-center">
+  <form class="form-signin">
+    <h1 class="h4 mb-2 login">Login do Cliente</h1>
+    <label for="inputEmail" class="sr-only">E-mail</label>
+    <input [(ngModel)]="usuario.email"
+           [ngClass]="{
+            'is-invalid':email.invalid && (email.dirty || email.touched),
+            'is-valid':email.valid && (email.dirty || email.touched)
+           }" #email="ngModel" class="form-control mb-2" type="email" id="inputEmail" name="email" placeholder="Informe seu Email" required />
+
+    <small class="invalid-feedback pb-2" *ngIf="email.invalid && (email.dirty || email.touched)">erro à â ã</small>
+
+    <label for="inputSenha" class="sr-only"></label>
+    <input required [(ngModel)]="usuario.senha" [ngClass]="{
+            'is-invalid':senha.invalid && (senha.dirty || senha.touched),
+            'is-valid':senha.valid && (senha.dirty || senha.touched)
+           }" #senha="ngModel" type="password" class="form-control mb-2" name="senha" placeholder="Senha" id="inputSenha" />
+    <small class="invalid-feedback pb-2" *ngIf="senha.invalid && (senha.dirty || senha.touched)">erro</small>
+    <button (click)="entrar()" class="btn btn-primary btn-block" type="submit">Entrar</button>
+    <div>Novo por aqui?<a [routerLink]='["/novo-usuario"]'>Cadastre-se</a></div>
+
+    <div class="alert alert-danger" *ngIf="mensagem">
+      {{mensagem}}
+    </div>
+  </form>
+  <div class="alert alert-primary" *ngIf="usuarioAtenticado">
+    usuario autenticado
+  </div>
+  <div class="alert alert-primary" *ngFor="let u of usuarios" role="alert">
+    {{ u }}
+  </div>
+</div>

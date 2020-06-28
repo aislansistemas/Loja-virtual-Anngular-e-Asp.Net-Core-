@@ -24,5 +24,10 @@ namespace QuickBuy.Repositorio
             _context.SaveChanges();
         }
 
+        public Usuario ObterPorEmail(string email)
+        {
+            return _context.Usuarios.FirstOrDefault(x => x.Email == email);
+        }
+
     }
 }

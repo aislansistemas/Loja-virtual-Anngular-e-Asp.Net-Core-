@@ -6,5 +6,4 @@ export class Produto {
     nomeArquivo: string;
     precoOriginal: number;
     quantidade: number;
-
 }

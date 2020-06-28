@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using QuickBuy.Context;
 using QuickBuy.Repositorio;
 
@@ -23,11 +25,13 @@ namespace QuickBuy
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDbContext<QuickBuyContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             // In production, the Angular files will be served from this directory
             services.AddScoped<UsuarioRpositorio>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddCors(cfg=> {
                 cfg.AddDefaultPolicy(policy =>
                 {
@@ -79,8 +83,8 @@ namespace QuickBuy
 
                 if (env.IsDevelopment())
                 {
-                   // spa.UseAngularCliServer(npmScript: "start");
-                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200/");
+                    spa.UseAngularCliServer(npmScript: "start");
+                    //spa.UseProxyToSpaDevelopmentServer("http://localhost:4200/");
 
                 }
             });

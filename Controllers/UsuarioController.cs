@@ -49,9 +49,16 @@ namespace QuickBuy
         {
             try
             {
-                usuarioRepositorio.CadastraUsuarios(usuario);
-                return Ok();
-
+                var usuarioCadastrado = usuarioRepositorio.ObterPorEmail(usuario.Email);
+                if (usuarioCadastrado == null)
+                {
+                    usuarioRepositorio.CadastraUsuarios(usuario);
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest("Usuario ja cadastrado");
+                }
             }
             catch (Exception ex)
             {

@@ -9,6 +9,9 @@ import { UsuarioService } from "src/app/servicos/usuario/usuario.service";
 export class CadastroUsuarioComponent implements OnInit{
     
     public usuario:Usuario;
+    public ativar_spiner:boolean;
+    public mensagem:string;
+    public usuarioCadastrado:boolean;
 
     constructor(private usuarioServico:UsuarioService){
 
@@ -20,8 +23,13 @@ export class CadastroUsuarioComponent implements OnInit{
     public cadastrar(){
         this.usuarioServico.cadastrarUsuario(this.usuario)
         .subscribe(
-            usurioSubscribe=>{},
-            e=>{}
+            usurioSubscribe=>{
+                this.usuarioCadastrado=true;
+                this.mensagem="";
+            },
+            e=>{
+                this.mensagem=e.error;
+            }
         );
     }
 }

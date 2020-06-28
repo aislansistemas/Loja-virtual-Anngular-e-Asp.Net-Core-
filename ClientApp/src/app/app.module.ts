@@ -12,7 +12,13 @@ import { LoginComponent } from './ususario/login/login.component';
 import { GuardaRotas } from './autorizacao/guarda.rotas';
 import { UsuarioService } from './servicos/usuario/usuario.service';
 import { CadastroUsuarioComponent } from './ususario/cadastro/cadastro.usuario.component';
-import { ProdutoServico } from './servicos/produto/produto.service';
+import { ProdutoServico } from './servicos/produto/produto.servico';
+import { PraticandoComponent } from './praticando/praticando.component';
+import { PraticandoServiceService } from './praticando/praticando.service.service';
+import { PesquisaProdutoComponent } from './produto/pesquisa/pesquisa.produto.component';
+import { LojaPesquisaComponent } from './loja/pesquisa/loja.pesquisa.component';
+import { LojaProdutoComponent } from './loja/produto/loja.produto.component';
+import { LojaEfetivarComponent } from './loja/efetivar/loja.efetivar.component';
  
 @NgModule({
   declarations: [
@@ -21,7 +27,12 @@ import { ProdutoServico } from './servicos/produto/produto.service';
     HomeComponent,
     ProdutoComponent,
     LoginComponent,
-    CadastroUsuarioComponent
+    CadastroUsuarioComponent,
+    PraticandoComponent,
+    PesquisaProdutoComponent,
+    LojaPesquisaComponent,
+    LojaProdutoComponent,
+    LojaEfetivarComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -29,12 +40,16 @@ import { ProdutoServico } from './servicos/produto/produto.service';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'produto', component: ProdutoComponent},
+      { path: 'produto', component: ProdutoComponent, canActivate: [GuardaRotas] },
       { path: 'entrar', component: LoginComponent },
-      { path: 'novo-usuario', component:CadastroUsuarioComponent}
+      { path: 'novo-usuario', component:CadastroUsuarioComponent},
+      { path: 'praticando', component: PraticandoComponent },
+      { path: 'pesquisar-produto', component: PesquisaProdutoComponent },
+      { path: 'loja-produto', component: LojaProdutoComponent },
+      { path: 'loja-efetivar', component: LojaEfetivarComponent, canActivate: [GuardaRotas] }
     ])
   ],
-  providers: [UsuarioService,ProdutoServico],
+  providers: [UsuarioService,ProdutoServico,PraticandoServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -81,6 +81,8 @@ namespace QuickBuy.Migrations
 
                     b.Property<string>("Nome");
 
+                    b.Property<string>("NomeArquivo");
+
                     b.Property<decimal>("Preco");
 
                     b.HasKey("Id");
@@ -93,6 +95,8 @@ namespace QuickBuy.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("EhAdministrador");
 
                     b.Property<string>("Email");
 

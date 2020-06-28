@@ -11,7 +11,7 @@
       <small class="invalid-feedback pb-2" *ngIf="email.invalid && (email.dirty || email.touched)">erro à â ã</small>
              
       <label for="inputNome" class="sr-only">Nome</label>
-      <input [(ngModel)]="usuario.Nome"
+      <input [(ngModel)]="usuario.nome"
              [ngClass]="{
               'is-invalid':nome.invalid && (nome.dirty || nome.touched),
               'is-valid':nome.valid && (nome.dirty || nome.touched)
@@ -34,7 +34,7 @@
               'is-valid':senha.valid && (senha.dirty || senha.touched)
              }" #senha="ngModel" type="password" class="form-control mb-2" name="senha" placeholder="Senha" id="inputSenha" />
       <small class="invalid-feedback pb-2" *ngIf="senha.invalid && (senha.dirty || senha.touched)">erro</small>
-      <button (click)="Cadastrar()" class="btn btn-primary btn-block" type="submit">Cadastrar</button>
+      <button (click)="cadastrar()" class="btn btn-primary btn-block" type="submit">Cadastrar</button>
       <a [routerLink]='["/entrar"]'>Voltar</a>
       <div class="alert alert-danger" *ngIf="mensagem">
         {{mensagem}}

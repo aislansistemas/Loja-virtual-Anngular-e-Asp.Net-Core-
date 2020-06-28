@@ -38,4 +38,8 @@ export class NavMenuComponent {
     //sessionStorage.setItem('usuario-atenticado',"");
     this.router.navigate(['/']);
   }
+
+  get usuario(){
+    return this.usuarioService.usuario;
+  }
 }
